@@ -33,3 +33,7 @@ Close floating window and disable autocommands
 ```
 :JumpRayStop
 ```
+
+## Screenshot
+
+[![nredir.nvim](https://i.postimg.cc/wMhfFXCh/out.gif)](https://postimg.cc/y38y8ZYd)

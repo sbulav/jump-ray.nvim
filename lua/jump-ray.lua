@@ -29,7 +29,7 @@ local function parse_jumps(tmp)
     line = line + 1
   end
 
-  if current_jump == 0 then 
+  if current_jump == 0 then
     current_jump = line - 3
   end
   line = 0
