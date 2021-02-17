@@ -50,7 +50,6 @@ end
 
 local function create_window()
     local w = vim.fn.nvim_win_get_width(0)
-    -- local h = vim.fn.nvim_win_get_height(0)
 
     local width = 40
     local row = 1
@@ -82,22 +81,17 @@ function M.close_window()
 end
 
 function M.show()
-    if not win then
-      create_window()
-    end
-    local cmd = "jumps"
-    -- Vim EX command
-    vim.api.nvim_set_var('__redir_exec_cmd', cmd)
-    vim.cmd([[
-      redir => g:__redir_exec_output
-        silent! execute g:__redir_exec_cmd
-      redir END
-    ]])
+  if not win then
+    create_window()
+  end
 
-  local tmp = vim.api.nvim_get_var('__redir_exec_output')
-
-  local result = parse_jumps(tmp)
-  vim.fn.nvim_buf_set_lines(buf, 0, 5, false, result)
+  vim.fn.nvim_buf_set_lines(
+    buf,  -- buffer handle of floating window
+    0,    -- put to first line
+    5,    -- last line index
+    false,-- don't error on out of bounds
+    parse_jumps(vim.fn.execute("jumps"))
+  )
 end
 
 function M.ray_start()
