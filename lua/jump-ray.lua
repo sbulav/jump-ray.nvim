@@ -49,8 +49,7 @@ local function parse_jumps(tmp)
 end
 
 local function create_window()
-    local w = vim.fn.nvim_win_get_width(0)
-
+    local w = vim.api.nvim_win_get_width(0)
     local width = 40
     local row = 1
     local col = w - width
@@ -64,7 +63,7 @@ local function create_window()
       height=6
     }
 
-    buf = vim.fn.nvim_create_buf(false, true)
+    buf = vim.api.nvim_create_buf(false, true)
     win = vim.api.nvim_open_win(buf, false, config)
 
     -- kill buffer on close
@@ -85,7 +84,7 @@ function M.show()
     create_window()
   end
 
-  vim.fn.nvim_buf_set_lines(
+  vim.api.nvim_buf_set_lines(
     buf,  -- buffer handle of floating window
     0,    -- put to first line
     5,    -- last line index
